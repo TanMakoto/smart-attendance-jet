@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance Jet | Presentation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    
+    <nav>
+        <div class="logo">Smart Attendance Jet</div>
+        <ul class="nav-links">
+            <li><a href="#about" class="active">เกี่ยวกับโปรเจค</a></li>
+            <li><a href="#tech">เทคโนโลยีที่ใช้</a></li>
+            <li><a href="#ai">AI Integration</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Section: Hero / About -->
+        <section id="about" class="section active">
+            <div class="content-wrapper">
+                <h1 class="animate-up delay-1">Smart Attendance <span class="gradient-text">Jet</span></h1>
+                <p class="subtitle animate-up delay-2">ระบบสแกนใบหน้าเข้างานแห่งอนาคต รวดเร็ว แม่นยำ และอัจฉริยะ</p>
+                
+                <div class="card glass animate-up delay-3">
+                    <h2>โปรเจคนี้ทำอะไร?</h2>
+                    <p>
+                        Smart Attendance Jet คือระบบบันทึกเวลาเข้า-ออกงานแบบ Single Page Application (SPA) ที่ใช้เทคโนโลยีล้ำสมัยในการยืนยันตัวตน 
+                        ช่วยลดเวลาและเพิ่มความปลอดภัยในการจัดการข้อมูลบุคลากร พร้อมระบบจัดการหลังบ้านแบบ Real-time
+                    </p>
+                </div>
+                <div class="hero-actions animate-up delay-4">
+                    <a href="#tech" class="btn primary" onclick="navigate('tech')">ดูเทคโนโลยีที่ใช้</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Tech Stack -->
+        <section id="tech" class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">เทคโนโลยีที่ใช้ (Tech Stack)</h2>
+                <div class="grid">
+                    <div class="card glass hover-effect">
+                        <div class="icon">💻</div>
+                        <h3>Frontend</h3>
+                        <p>Single Page Application (SPA) พัฒนาด้วย React / Vite พร้อม Vanilla CSS เพื่อความรวดเร็วและสวยงาม (Glassmorphism Design)</p>
+                    </div>
+                    <div class="card glass hover-effect">
+                        <div class="icon">⚙️</div>
+                        <h3>Backend & Deployment</h3>
+                        <p>Vercel สำหรับ Frontend Hosting รันบนโครงสร้างพื้นฐานระดับ Edge ทำให้โหลดไวทั่วโลก และ GitHub Pages สำหรับหน้า Landing Page นี้</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: AI Integration (Important) -->
+        <section id="ai" class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">ฟีเจอร์ AI และการทำงาน (AI Integration)</h2>
+                <div class="card glass feature-card">
+                    <div class="ai-illustration">
+                        <div class="scanner-line"></div>
+                        <div class="face-model">[ภาพจำลองระบบจำแนกใบหน้า]</div>
+                    </div>
+                    <div class="ai-details">
+                        <span class="badge">🔥 Core Feature</span>
+                        <h3>Face Recognition AI</h3>
+                        <p>
+                            ระบบของเราทำงานร่วมกับโมเดลปัญญาประดิษฐ์ในการตรวจจับและจดจำใบหน้า (Face Recognition)
+                            - <strong>แม่นยำสูง:</strong> สามารถแยกแยะบุคคลในสภาวะแสงที่แตกต่างกัน
+                            - <strong>เรียนรู้ต่อเนื่อง:</strong> ปรับปรุงความแม่นยำจากข้อมูลใหม่ (ถ้ามี)
+                            - <strong>ปลอดภัย:</strong> ตรวจจับใบหน้าจริง ป้องกันการใช้รูปภาพหรือวิดีโอ (Liveness Detection)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>จัดทำโดย กลุ่มโปรเจค Smart Attendance Jet | นำเสนอผลงาน AI Workshop 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
