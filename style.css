@@ -99,26 +99,19 @@ main {
 }
 
 .section {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    padding: 4rem 2rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(20px);
+    min-height: 100vh;
+    padding: 6rem 2rem 4rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.section.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    position: relative;
+.section:last-child {
+    border-bottom: none;
 }
 
 .content-wrapper {
@@ -209,6 +202,55 @@ h1 {
 .icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+}
+
+/* Timeline (Flow Section) */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    margin-top: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--gradient-1), var(--gradient-2));
+    border-radius: 2px;
+}
+
+.timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+}
+
+.step-number {
+    width: 80px;
+    height: 80px;
+    background: var(--bg-color);
+    border: 4px solid var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    z-index: 2;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+}
+
+.step-content {
+    flex: 1;
+    padding: 2rem !important;
 }
 
 /* AI Section Elements */

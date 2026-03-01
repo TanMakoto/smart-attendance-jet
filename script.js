@@ -1,52 +1,65 @@
-// Simple SPA Routing Logic
-function navigate(sectionId) {
-    // 1. Update Navigation Links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-        }
-    });
-
-    // 2. Hide all sections & Remove animations
-    document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-        // Reset animations so they re-play when section becomes active again
-        const animatedElements = section.querySelectorAll('.animate-up');
-        animatedElements.forEach(el => {
-            el.style.animation = 'none';
-            el.offsetHeight; /* trigger reflow */
-            el.style.animation = null; 
-        });
-    });
-
-    // 3. Show target section
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
-}
-
-// Handle Hash Changes (E.g. #about, #tech)
-window.addEventListener('hashchange', () => {
-    let hash = window.location.hash.substring(1);
-    if (!hash) hash = 'about'; // Default
-    navigate(hash);
-});
-
-// Initialize on Load
-window.addEventListener('DOMContentLoaded', () => {
-    let hash = window.location.hash.substring(1);
-    if (!hash) hash = 'about';
-    navigate(hash);
-});
-
-// Smooth scroll for nav links (prevents default jump)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// Smooth scroll for nav links
+document.querySelectorAll('.nav-links a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const sectionId = this.getAttribute('href').substring(1);
-        window.history.pushState(null, null, `#${sectionId}`);
-        navigate(sectionId);
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth'
+            });
+            // Update URL hash without jumping
+            history.pushState(null, null, `#${targetId}`);
+        }
+    });
+});
+
+// Intersection Observer for scroll animations and active nav links
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.3 // Trigger when 30% of the section is visible
+};
+
+const sectionObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Add visible class to trigger CSS transitions
+            entry.target.classList.add('visible');
+
+            // Update active nav link
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}, observerOptions);
+
+// Observe all sections
+sections.forEach(section => {
+    sectionObserver.observe(section);
+});
+
+// Also handle the hero CTA button manually if needed
+document.querySelectorAll('a[href^="#"].btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth'
+            });
+        }
     });
 });
